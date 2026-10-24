@@ -1,0 +1,40 @@
+# Render blueprint for the backend. In Render: New > Blueprint, pick this repo.
+# (If your repo root is event-planner/, move this file to the repo root.)
+services:
+  - type: web
+    name: event-planner-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: uv run --no-dev uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13.9"
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-5-5
+      - key: MOCK_MODE
+        value: "true"
+      - key: LANGSMITH_TRACING
+        value: "true"
+      - key: LANGSMITH_PROJECT
+        value: event-planner
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: APP_PASSWORD
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
+      - key: LANGSMITH_API_KEY
+        sync: false

@@ -1,0 +1,27 @@
+[project]
+name = "event-planner-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-dotenv",
+    "httpx",
+    "langchain",
+    "langchain-anthropic",
+    "langgraph",
+    "langgraph-checkpoint-postgres",
+    "langchain-mcp-adapters",
+    "langchain-tavily",
+    "mcp",
+    "psycopg[binary,pool]",
+    "google-api-python-client",
+    "google-auth",
+    "requests",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.uv]
+package = false
